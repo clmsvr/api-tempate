@@ -1,0 +1,16 @@
+FROM eclipse-temurin:17-jre-alpine
+#FROM amazoncorretto:17.0.7-al2023-headless
+
+#se nao existir vai ser criado
+WORKDIR /app
+
+ARG JAR_FILE
+
+COPY target/${JAR_FILE} /app/api.jar
+
+#documentacao - nao publica a porta
+EXPOSE 8080
+
+#estamos dentro do WORKDIR e o api.jar tambem
+CMD ["java", "-jar", "api.jar"]
+
